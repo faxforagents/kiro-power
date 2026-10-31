@@ -1,0 +1,26 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "faxforagents",
+  "version": "1.0.0",
+  "description": "Send and receive faxes from Kiro through Fax for Agents: documents from text, Markdown, HTML or an uploaded PDF or image, exact quotes, human approvals bound to one send, delegated policies, delivery evidence and the inbox. A test key uses the sandbox at no cost.",
+  "author": {
+    "name": "Fax for Agents",
+    "email": "hello@faxforagents.com",
+    "url": "https://faxforagents.com"
+  },
+  "homepage": "https://faxforagents.com/mcp/",
+  "repository": "https://github.com/faxforagents/kiro-power",
+  "license": "MIT",
+  "keywords": [
+    "fax",
+    "send fax",
+    "receive fax",
+    "fax api",
+    "faxforagents",
+    "fax for agents",
+    "fax approval",
+    "fax delivery",
+    "inbound fax",
+    "fax number"
+  ]
+}

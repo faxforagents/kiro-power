@@ -1,0 +1,40 @@
+name: ci
+
+# Provenance: faxforagents/mcp/.github/workflows/ci.yml (2026-10-31), actions pinned by SHA.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  truthcheck:
+    name: truth pins
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: sh scripts/truthcheck.sh
+
+  power:
+    name: plugin.json, mcp.json and the vendored skill
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: python3 scripts/check_power.py
+
+  skill-matches-source:
+    name: the vendored skill equals faxforagents/skills main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: |
+          curl -fsSL https://raw.githubusercontent.com/faxforagents/skills/main/skills/fax-for-agents/SKILL.md -o /tmp/SKILL.md
+          diff /tmp/SKILL.md skills/fax-for-agents/SKILL.md && echo "the vendored skill is current"
